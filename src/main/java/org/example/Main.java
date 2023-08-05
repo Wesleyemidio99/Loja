@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         cadastroCliente();
         produtoCliente();
-        crediarioCliente();
+        formaDePagamento();
     }
     public static void cadastroCliente(){
         Scanner digitar = new Scanner(System.in);
@@ -32,7 +32,7 @@ public class Main {
 
     }
 
-    public static void crediarioCliente(){
+    public static void formaDePagamento(){
         Scanner digitar = new Scanner(System.in);
 
         System.out.println("Digite qual forma de pagamento");
@@ -53,12 +53,22 @@ public class Main {
                 break;
 
             case 4:
-                System.out.println("Quantidade de parcelas");
-                int parcelas = digitar.nextInt();
+                crediarioCliente();
 
                 break;
-
         }
 
     }
+    public static void crediarioCliente(Produto produto){
+        Scanner digitar = new Scanner(System.in);
+
+        System.out.println("Quantidade de Parcelas:");
+        int quantidade = digitar.nextInt();
+
+        double valor = produto.getValor();
+        System.out.println("Aviso caso tenha atraso no pagamento das parcelas, vai ser cobrado 20% do valor da parcela mais 1% ao dia.");
+
+        Crediario crediario = new Crediario(quantidade,valor);
+    }
+
 }
